@@ -1,0 +1,2 @@
+/Users/merlinwillner/Developer/ProjectCoconut/project_coconut/android/app/.cxx/Debug/59524pc2/x86/CMakeFiles/edit_cache.dir
+/Users/merlinwillner/Developer/ProjectCoconut/project_coconut/android/app/.cxx/Debug/59524pc2/x86/CMakeFiles/rebuild_cache.dir
