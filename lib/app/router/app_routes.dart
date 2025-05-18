@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_coconut/app/widgets/bottom_nav_bar.dart';
+import 'package:project_coconut/shared/bottom_nav_bar.dart';
 import 'package:project_coconut/features/settings/view/settings_screen.dart';
 import 'package:project_coconut/features/workouts/view/workout_detail_screen.dart';
 
