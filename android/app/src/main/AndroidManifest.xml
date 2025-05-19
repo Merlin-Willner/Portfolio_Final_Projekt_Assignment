@@ -1,4 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.merlin-willner.project-coconut">  <!-- This was added after the creation of the app -->
+
     <application
         android:label="${appName}"
         android:name="${applicationName}"
