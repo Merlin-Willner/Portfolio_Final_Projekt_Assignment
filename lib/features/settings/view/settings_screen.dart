@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_coconut/app/theme/cubit/theme_cubit.dart';
+import 'package:project_coconut/shared/app_bar/modular_app_bar.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -11,7 +12,13 @@ class SettingsScreen extends StatelessWidget {
         context.watch<ThemeCubit>().state.themeMode == ThemeMode.dark;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Einstellungen')),
+      appBar: ModularAppBar(
+        title: 'Settings',
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
       body: ListView(
         children: [
           SwitchListTile(
@@ -23,7 +30,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           const Divider(),
           const ListTile(
-            title: Text('Entwickler'),
+            title: Text('Developer'),
             subtitle: Text('Merlin Willner\nmerlin@example.com'),
             leading: Icon(Icons.info_outline),
           ),

@@ -52,5 +52,20 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
+
+
+
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs access to your photo library to select images and videos for exercises.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app may use your camera to take exercise photos or videos.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app may use your microphone when recording videos for exercises.</string>
+
+
+
+
 </dict>
 </plist>

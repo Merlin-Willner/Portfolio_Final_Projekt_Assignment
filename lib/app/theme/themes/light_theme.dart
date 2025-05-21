@@ -4,7 +4,7 @@ import 'package:project_coconut/app/theme/themes/theme_constants.dart';
 
 final lightTheme = ThemeData(
   colorScheme: const ColorScheme.light(
-    primary: MyColors.lightBackground,
+    primary: MyColors.lightAccent2,
     secondary: MyColors.lightAccent,
     surface: MyColors.lightCard,
     primaryContainer: MyColors.lightCard,
@@ -40,6 +40,17 @@ final lightTheme = ThemeData(
       fontSize: 14,
       fontWeight: FontWeight.bold,
       color: Colors.black,
+    ),
+  ),
+  inputDecorationTheme: const InputDecorationTheme(
+    labelStyle: TextStyle(color: Colors.black),
+    hintStyle: TextStyle(color: Colors.black),
+    focusedBorder: OutlineInputBorder(),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: MyColors.lightCard,
+      foregroundColor: Colors.black,
     ),
   ),
 );

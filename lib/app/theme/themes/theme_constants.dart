@@ -7,7 +7,7 @@ class MyColors {
   static const darkCard = Color(0xFF212121);
 
   static const lightAccent = Color(0xFFFF0000);
-  static const lightAccent2 = Color(0xFFFFFB00);
+  static const lightAccent2 = Color.fromARGB(255, 241, 44, 9);
   static const lightBackground = Color(0xFFFFFFFF);
   static const lightCard = Color(0xFFE1E1E3);
 }

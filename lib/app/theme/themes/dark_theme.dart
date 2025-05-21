@@ -8,7 +8,7 @@ final darkTheme = ThemeData(
     secondary: MyColors.darkAccent2,
     primaryContainer: MyColors.darkCard,
     onPrimary: Colors.white,
-    onSecondary: MyColors.darkAccent2,
+    onSecondary: Colors.white,
     onSurface: Colors.white,
   ),
   scaffoldBackgroundColor: MyColors.darkBackground,
@@ -25,6 +25,7 @@ final darkTheme = ThemeData(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: MyColors.darkAccent2,
+      foregroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
   ),
