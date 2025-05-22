@@ -8,10 +8,8 @@ class ExerciseRepository {
     await _collection.doc(exercise.id).set(exercise.toJson());
   }
 
-  Future<List<Exercise>> getAllExercises() async {
-    final snapshot = await _collection.get();
-    return snapshot.docs
-        .map((doc) => Exercise.fromJson(doc.data(), doc.id))
-        .toList();
+  Future<List<Exercise>> fetchAll() async {
+    final snap = await _collection.get();
+    return snap.docs.map((d) => Exercise.fromJson(d.data(), d.id)).toList();
   }
 }

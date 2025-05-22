@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_coconut/features/exercises/exercises.dart';
+import 'package:project_coconut/features/workouts/view/workout_form_page.dart';
 import 'package:project_coconut/shared/app_bar/modular_app_bar.dart';
 
 class AddPage extends StatelessWidget {
@@ -37,12 +38,7 @@ class _AddView extends StatelessWidget {
               child: TabBarView(
                 children: [
                   const ExerciseForm(),
-                  Center(
-                    child: Text(
-                      'Workout creation coming soon…',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ),
+                  const WorkoutFormPage(),
                 ],
               ),
             ),

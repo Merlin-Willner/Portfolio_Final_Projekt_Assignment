@@ -1,2 +1,2 @@
-export 'cubit/exercise_cubit.dart';
+export 'cubit/exercise_form_cubit.dart';
 export 'view/exercise_form.dart';

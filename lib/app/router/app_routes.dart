@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:project_coconut/shared/bottom_nav_bar.dart';
+import 'package:project_coconut/features/exercises/view/exercise_detail_screen.dart';
 import 'package:project_coconut/features/settings/view/settings_screen.dart';
-import 'package:project_coconut/features/workouts/view/workout_detail_screen.dart';
+import 'package:project_coconut/shared/bottom_nav_bar.dart';
 
 final Map<String, WidgetBuilder> appRoutes = {
   '/': (context) => const BottomNavBar(),
-  '/workout_detail_screen': (context) => const WorkoutDetailScreen(),
   '/settings': (context) => const SettingsScreen(),
+  // '/exercise_detail': (context) => ExerciseDetailScreen(),
 };

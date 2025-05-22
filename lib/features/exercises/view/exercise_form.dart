@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project_coconut/features/exercises/cubit/exercise_cubit.dart';
+import 'package:project_coconut/features/exercises/cubit/exercise_form_cubit.dart';
 
 // This widget is the main screen for adding a new exercise.
 // The View and Page classes are inside of the add feature
@@ -33,7 +33,7 @@ class ExerciseForm extends StatelessWidget {
                   controller: cubit.descController,
                   decoration:
                       const InputDecoration(labelText: 'Description (opt.)'),
-                  maxLines: 3,
+                  maxLines: 4,
                 ),
                 const SizedBox(height: 16),
 

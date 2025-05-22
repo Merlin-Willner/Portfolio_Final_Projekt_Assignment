@@ -1,31 +1,52 @@
-import 'package:project_coconut/features/workouts/model/workout_set_model.dart';
+import 'package:equatable/equatable.dart';
+import '../../exercises/model/exercise_set_model.dart';
 
-class Workout {
-  Workout({
+class Workout extends Equatable {
+  final String id;
+  final String title;
+  final String? imageUrl;
+  final String? videoUrl;
+  final String? description;
+  final List<String> muscleGroups;
+  final List<WorkoutSet> sets;
+
+  const Workout({
     required this.id,
     required this.title,
-    required this.sets,
+    this.imageUrl,
+    this.videoUrl,
+    this.description,
+    this.muscleGroups = const [],
+    this.sets = const [],
   });
 
   factory Workout.fromJson(Map<String, dynamic> json, String id) {
-    final setsJson = json['sets'] as List<dynamic>;
+    final setsJson = (json['sets'] as List<dynamic>? ?? []);
     return Workout(
       id: id,
       title: json['title'] as String? ?? '',
+      imageUrl: json['imageUrl'] as String?,
+      videoUrl: json['videoUrl'] as String?,
+      description: json['description'] as String?,
+      muscleGroups: (json['muscleGroups'] is List
+          ? List<String>.from(json['muscleGroups'] as List<dynamic>)
+          : []),
       sets: setsJson
           .map((s) => WorkoutSet.fromJson(s as Map<String, dynamic>))
           .toList(),
     );
   }
 
-  final String id;
-  final String title;
-  final List<WorkoutSet> sets;
+  Map<String, dynamic> toJson() => {
+        'title': title,
+        'imageUrl': imageUrl,
+        'videoUrl': videoUrl,
+        'description': description,
+        'muscleGroups': muscleGroups,
+        'sets': sets.map((s) => s.toJson()).toList(),
+      };
 
-  Map<String, dynamic> toJson() {
-    return {
-      'title': title,
-      'sets': sets.map((s) => s.toJson()).toList(),
-    };
-  }
+  @override
+  List<Object?> get props =>
+      [id, title, imageUrl, videoUrl, description, muscleGroups, sets];
 }
