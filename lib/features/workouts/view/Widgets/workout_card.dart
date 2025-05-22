@@ -231,12 +231,13 @@ class WorkoutCard extends StatelessWidget {
 
   Widget _buildImage() {
     if (workout.imageUrl == null) {
-      return Image.asset('assets/img/workout_placeholder.png',
+      return Image.asset('assets/images/workout_placeholder.jpeg',
           fit: BoxFit.cover);
     }
     final file = File(workout.imageUrl!);
     return file.existsSync()
         ? Image.file(file, fit: BoxFit.cover)
-        : Image.asset('assets/img/workout_placeholder.png', fit: BoxFit.cover);
+        : Image.asset('assets/images/workout_placeholder.jpeg',
+            fit: BoxFit.cover);
   }
 }

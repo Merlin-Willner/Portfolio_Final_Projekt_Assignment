@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project_coconut/features/exercises/model/exercise_model.dart';
 import 'package:project_coconut/features/workouts/model/workout_model.dart';
 import '../data/workout_repository.dart';
 import 'workout_list_state.dart';
@@ -23,4 +24,6 @@ class WorkoutListCubit extends Cubit<WorkoutListState> {
   void addLocally(Workout w) {
     emit(state.copyWith(workouts: [...state.workouts, w]));
   }
+
+  void addExerciseLocally(Exercise exercise) {}
 }

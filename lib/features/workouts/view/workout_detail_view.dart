@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_coconut/features/exercises/model/exercise_set_model.dart';
 import 'package:project_coconut/features/workouts/view/workout_action_view.dart';
+import 'package:project_coconut/shared/app_bar/modular_app_bar.dart';
 
 import '../../exercises/cubit/exercise_list_cubit.dart';
 import '../../exercises/model/exercise_model.dart';
@@ -22,7 +23,7 @@ class WorkoutDetailView extends StatelessWidget {
     final exercises = context.watch<ExerciseListCubit>().state.exercises;
 
     return Scaffold(
-      appBar: AppBar(title: Text(workout.title)),
+      appBar: ModularAppBar(title: workout.title),
       body: CustomScrollView(
         slivers: [
           // ── Header with cover-image & description ──────────────

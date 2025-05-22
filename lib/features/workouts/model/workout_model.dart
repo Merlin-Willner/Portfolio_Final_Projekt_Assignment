@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:project_coconut/features/exercises/model/exercise_model.dart';
 import '../../exercises/model/exercise_set_model.dart';
 
 class Workout extends Equatable {

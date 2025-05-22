@@ -1,6 +1,9 @@
 /// home/view/home_workouts_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project_coconut/features/exercises/cubit/exercise_list_cubit.dart';
+import 'package:project_coconut/features/exercises/cubit/exercise_list_state.dart';
+import 'package:project_coconut/shared/app_bar/modular_sliver_app_bar.dart';
 import '../cubit/workout_list_cubit.dart';
 import '../cubit/workout_list_state.dart';
 import 'widgets/workout_card.dart';
@@ -25,10 +28,8 @@ class WorkoutListView extends StatelessWidget {
         // ---------- ONE scroll view, no nesting ----------
         return CustomScrollView(
           slivers: [
-            SliverAppBar(
-              pinned: true,
-              title: Text('Workouts',
-                  style: Theme.of(context).textTheme.titleLarge),
+            ModularSliverAppBar(
+              title: 'Workouts',
             ),
             SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),

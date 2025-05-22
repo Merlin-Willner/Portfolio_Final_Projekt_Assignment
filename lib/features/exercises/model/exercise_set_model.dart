@@ -53,4 +53,17 @@ class WorkoutSet {
         return '$valueOfType sec static hold with ${weight != null ? '$weight kg' : 'Bodyweight'}${restTime != null ? ' and $restTime sec rest' : ''}';
     }
   }
+
+  String get typelabel {
+    switch (type) {
+      case SetType.reps:
+        return '$valueOfType reps';
+      case SetType.duration:
+        return '$valueOfType seconds';
+      case SetType.rir:
+        return '$valueOfType RIR';
+      case SetType.weightHold:
+        return '$valueOfType sec static hold';
+    }
+  }
 }
