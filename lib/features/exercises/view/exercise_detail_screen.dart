@@ -1,12 +1,13 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:project_coconut/features/exercises/model/exercise_model.dart';
 import 'package:project_coconut/shared/app_bar/modular_app_bar.dart';
 import 'package:video_player/video_player.dart';
-import 'package:project_coconut/features/exercises/model/exercise_model.dart';
 
 /// Shows image / video and meta–data of an exercise.
 class ExerciseDetailScreen extends StatefulWidget {
-  const ExerciseDetailScreen({super.key, required this.exercise});
+  const ExerciseDetailScreen({required this.exercise, super.key});
   final Exercise exercise;
 
   @override
@@ -45,7 +46,6 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
     super.dispose();
   }
 
-  /// Chooses a valid ImageProvider, falling back to a local asset.
   ImageProvider _imageProviderFor(String? path) {
     if (path != null && path.isNotEmpty) {
       return path.startsWith('http')
@@ -66,7 +66,6 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ── Video or (fallback) Image ─────────────────────────────────
             if (_videoCtrl != null &&
                 _videoCtrl!.value.isInitialized &&
                 !_videoFailed)
@@ -82,8 +81,6 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                 fit: BoxFit.cover,
               ),
             const SizedBox(height: 12),
-
-            // ── Description ───────────────────────────────────────────────
             if (ex.description?.trim().isNotEmpty ?? false) ...[
               Text(
                 ex.description!,
@@ -91,8 +88,6 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
               ),
               const SizedBox(height: 12),
             ],
-
-            // ── Muscle Chips ──────────────────────────────────────────────
             if (ex.muscleGroups.isNotEmpty)
               Wrap(
                 spacing: 6,
@@ -102,8 +97,6 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
           ],
         ),
       ),
-
-      // play / pause FAB only when video exists & loaded
       floatingActionButton: (_videoCtrl != null &&
               _videoCtrl!.value.isInitialized &&
               !_videoFailed)

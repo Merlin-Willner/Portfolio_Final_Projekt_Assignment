@@ -3,14 +3,6 @@ import 'package:project_coconut/features/exercises/model/exercise_model.dart';
 import '../../exercises/model/exercise_set_model.dart';
 
 class Workout extends Equatable {
-  final String id;
-  final String title;
-  final String? imageUrl;
-  final String? videoUrl;
-  final String? description;
-  final List<String> muscleGroups;
-  final List<WorkoutSet> sets;
-
   const Workout({
     required this.id,
     required this.title,
@@ -22,7 +14,7 @@ class Workout extends Equatable {
   });
 
   factory Workout.fromJson(Map<String, dynamic> json, String id) {
-    final setsJson = (json['sets'] as List<dynamic>? ?? []);
+    final setsJson = json['sets'] as List<dynamic>? ?? [];
     return Workout(
       id: id,
       title: json['title'] as String? ?? '',
@@ -33,11 +25,17 @@ class Workout extends Equatable {
           ? List<String>.from(json['muscleGroups'] as List<dynamic>)
           : []),
       sets: setsJson
-          .map((s) => WorkoutSet.fromJson(s as Map<String, dynamic>))
+          .map((s) => ExerciseSet.fromJson(s as Map<String, dynamic>))
           .toList(),
     );
   }
-
+  final String id;
+  final String title;
+  final String? imageUrl;
+  final String? videoUrl;
+  final String? description;
+  final List<String> muscleGroups;
+  final List<ExerciseSet> sets;
   Map<String, dynamic> toJson() => {
         'title': title,
         'imageUrl': imageUrl,

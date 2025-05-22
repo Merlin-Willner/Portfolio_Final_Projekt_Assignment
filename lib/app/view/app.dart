@@ -17,16 +17,17 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        // hält die komplette Liste aller Exercises im Speicher
+        // holds the complete list of exercises in memory
         BlocProvider(create: (_) => ExerciseListCubit(ExerciseRepository())),
-        // hält die komplette Liste aller Workouts im Speicher
+        // holds the complete list of workouts in memory
         BlocProvider(create: (_) => WorkoutListCubit(WorkoutRepository())),
-        // Theme-Cubit bleibt hier
+
         BlocProvider(create: (_) => ThemeCubit()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, themeState) => MaterialApp(
           title: 'Project Coconut',
+          debugShowCheckedModeBanner: false,
           theme: lightTheme,
           darkTheme: darkTheme,
           themeMode: themeState.themeMode,

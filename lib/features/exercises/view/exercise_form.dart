@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_coconut/features/exercises/cubit/exercise_form_cubit.dart';
 
 // This widget is the main screen for adding a new exercise.
-// The View and Page classes are inside of the add feature
 class ExerciseForm extends StatelessWidget {
   const ExerciseForm({super.key});
 
@@ -56,7 +55,7 @@ class ExerciseForm extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
 
-                // Bild / Video Buttons
+                // Picture / Video Buttons
                 Center(
                   child: Column(
                     children: [

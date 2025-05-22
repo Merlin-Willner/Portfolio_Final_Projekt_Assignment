@@ -5,23 +5,16 @@ enum SetType {
   weightHold, // Weight hold (e.g., for isometric exercises)
 }
 
-class WorkoutSet {
-  final String exerciseId;
-  final SetType type;
-  final int valueOfType; // Context-dependent: reps, seconds, RIR, etc.
-  final double? weight; // Optional: for weighted exercises or holds
-  final int? restTime; // Optional: rest time in seconds
-
-  WorkoutSet({
+class ExerciseSet {
+  ExerciseSet({
     required this.exerciseId,
     required this.type,
     required this.valueOfType,
     this.weight,
     this.restTime,
   });
-
-  factory WorkoutSet.fromJson(Map<String, dynamic> json) {
-    return WorkoutSet(
+  factory ExerciseSet.fromJson(Map<String, dynamic> json) {
+    return ExerciseSet(
       exerciseId: json['exerciseId']?.toString() ?? '',
       type: SetType.values.firstWhere((e) => e.name == json['type']),
       valueOfType: json['valueOfType'] as int? ?? 0,
@@ -29,7 +22,11 @@ class WorkoutSet {
       restTime: (json['restTime'] as num?)?.toInt(),
     );
   }
-
+  final String exerciseId;
+  final SetType type;
+  final int valueOfType; // Context-dependent: reps, seconds, RIR, etc.
+  final double? weight; // Optional: for weighted exercises or holds
+  final int? restTime; // Optional: rest time in seconds
   Map<String, dynamic> toJson() {
     return {
       'exerciseId': exerciseId,
@@ -40,7 +37,6 @@ class WorkoutSet {
     };
   }
 
-  // Optional: returns a human-readable label based on type
   String get label {
     switch (type) {
       case SetType.reps:

@@ -2,16 +2,14 @@ import 'package:equatable/equatable.dart';
 import '../model/workout_model.dart';
 
 class WorkoutListState extends Equatable {
-  final bool isLoading;
-  final List<Workout> workouts;
-  final String? error;
-
   const WorkoutListState({
     this.isLoading = false,
     this.workouts = const [],
     this.error,
   });
-
+  final bool isLoading;
+  final List<Workout> workouts;
+  final String? error;
   WorkoutListState copyWith({
     bool? isLoading,
     List<Workout>? workouts,

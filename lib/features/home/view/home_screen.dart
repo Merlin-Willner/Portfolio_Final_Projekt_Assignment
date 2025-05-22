@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_coconut/features/exercises/view/exercise_list_page.dart';
 import 'package:project_coconut/features/workouts/view/workout_list_view.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,6 +6,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WorkoutListView();
+    return const WorkoutListView();
   }
 }

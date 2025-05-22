@@ -13,16 +13,6 @@ import 'package:project_coconut/features/workouts/model/workout_model.dart';
 import 'package:uuid/uuid.dart';
 
 class WorkoutFormState extends Equatable {
-  final String title;
-  final String description;
-  final List<String> muscleGroups;
-  final File? imageFile;
-  final File? videoFile;
-  final List<WorkoutSet> sets;
-  final List<Exercise> availableExercises;
-  final bool isSubmitting;
-  final String? errorMessage;
-
   const WorkoutFormState({
     this.title = '',
     this.description = '',
@@ -34,14 +24,22 @@ class WorkoutFormState extends Equatable {
     this.isSubmitting = false,
     this.errorMessage,
   });
-
+  final String title;
+  final String description;
+  final List<String> muscleGroups;
+  final File? imageFile;
+  final File? videoFile;
+  final List<ExerciseSet> sets;
+  final List<Exercise> availableExercises;
+  final bool isSubmitting;
+  final String? errorMessage;
   WorkoutFormState copyWith({
     String? title,
     String? description,
     List<String>? muscleGroups,
     File? imageFile,
     File? videoFile,
-    List<WorkoutSet>? sets,
+    List<ExerciseSet>? sets,
     List<Exercise>? availableExercises,
     bool? isSubmitting,
     String? errorMessage,
@@ -74,28 +72,24 @@ class WorkoutFormState extends Equatable {
 }
 
 class WorkoutFormCubit extends Cubit<WorkoutFormState> {
-  final WorkoutRepository _repo;
-  final ExerciseRepository _exerciseRepo;
-  final ImagePicker _picker = ImagePicker();
-
   WorkoutFormCubit(this._repo, this._exerciseRepo)
       : super(const WorkoutFormState()) {
     _loadExercises();
   }
-
+  final WorkoutRepository _repo;
+  final ExerciseRepository _exerciseRepo;
+  final ImagePicker _picker = ImagePicker();
   Future<void> _loadExercises() async {
-    final list = await _exerciseRepo.fetchAll(); //TODO: Better make that global
+    final list = await _exerciseRepo.fetchAll();
     emit(state.copyWith(availableExercises: list));
   }
 
-  void titleChanged(String t) =>
-      emit(state.copyWith(title: t, errorMessage: null));
-  void descriptionChanged(String d) =>
-      emit(state.copyWith(description: d, errorMessage: null));
+  void titleChanged(String t) => emit(state.copyWith(title: t));
+  void descriptionChanged(String d) => emit(state.copyWith(description: d));
   void toggleMuscle(String m) {
     final ms = List<String>.from(state.muscleGroups);
     ms.contains(m) ? ms.remove(m) : ms.add(m);
-    emit(state.copyWith(muscleGroups: ms, errorMessage: null));
+    emit(state.copyWith(muscleGroups: ms));
   }
 
   Future<void> pickImage() async {
@@ -108,7 +102,6 @@ class WorkoutFormCubit extends Cubit<WorkoutFormState> {
     if (p != null) emit(state.copyWith(videoFile: File(p.path)));
   }
 
-  /// Fügt einen neuen Satz, basierend auf den UI-Feldern, hinzu
   void addSet({
     required String exerciseId,
     required SetType type,
@@ -116,9 +109,9 @@ class WorkoutFormCubit extends Cubit<WorkoutFormState> {
     required int restTime,
     double? weight,
   }) {
-    final newSets = List<WorkoutSet>.from(state.sets)
+    final newSets = List<ExerciseSet>.from(state.sets)
       ..add(
-        WorkoutSet(
+        ExerciseSet(
           exerciseId: exerciseId,
           type: type,
           valueOfType: valueOfType,
@@ -130,7 +123,7 @@ class WorkoutFormCubit extends Cubit<WorkoutFormState> {
   }
 
   void removeSet(int idx) {
-    final newSets = List<WorkoutSet>.from(state.sets)..removeAt(idx);
+    final newSets = List<ExerciseSet>.from(state.sets)..removeAt(idx);
     emit(state.copyWith(sets: newSets));
   }
 
@@ -145,7 +138,7 @@ class WorkoutFormCubit extends Cubit<WorkoutFormState> {
       emit(state.copyWith(errorMessage: 'Titel und mindestens 1 Set nötig'));
       return;
     }
-    emit(state.copyWith(isSubmitting: true, errorMessage: null));
+    emit(state.copyWith(isSubmitting: true));
     try {
       final w = Workout(
         id: const Uuid().v4(),
@@ -158,14 +151,14 @@ class WorkoutFormCubit extends Cubit<WorkoutFormState> {
       );
       await _repo.addWorkout(w);
       try {
-        // ignore if provider not found
-        // (e.g. unit tests or other isolated contexts)
-        // ignore: use_build_context_synchronously
         context.read<WorkoutListCubit>().addLocally(w);
       } catch (_) {}
       emit(const WorkoutFormState()); // Reset
     } catch (e) {
       emit(state.copyWith(isSubmitting: false, errorMessage: e.toString()));
     }
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Workout saved successfully')),
+    );
   }
 }

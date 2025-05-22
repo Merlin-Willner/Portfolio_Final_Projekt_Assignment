@@ -4,11 +4,10 @@ import 'package:project_coconut/features/exercises/data/exercise_repository.dart
 import 'package:project_coconut/features/exercises/model/exercise_model.dart';
 
 class ExerciseListCubit extends Cubit<ExerciseListState> {
-  final ExerciseRepository _repo;
-
   ExerciseListCubit(this._repo) : super(const ExerciseListState()) {
     loadAll();
   }
+  final ExerciseRepository _repo;
   Future<void> loadAll() async {
     emit(state.copyWith(isLoading: true, error: null));
     try {

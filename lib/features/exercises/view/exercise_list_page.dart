@@ -5,14 +5,16 @@ import 'package:project_coconut/features/exercises/cubit/exercise_list_state.dar
 import 'package:project_coconut/shared/app_bar/modular_app_bar.dart';
 
 class ExerciseListPage extends StatelessWidget {
+  const ExerciseListPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const ModularAppBar(title: 'Your Exercises'),
       body: BlocBuilder<ExerciseListCubit, ExerciseListState>(
         builder: (context, state) {
-          if (state.isLoading)
+          if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
+          }
           if (state.error != null) return Center(child: Text(state.error!));
           return ListView.builder(
             itemCount: state.exercises.length,
